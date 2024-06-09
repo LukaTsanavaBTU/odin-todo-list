@@ -1,4 +1,7 @@
-function todoFactory(title, description, startDate, dueDate, priority, additional, marked) {
+function todoFactory(title, description, dueDate, priority) {
+    let additional;
+    let marked = false;
+    let startDate = new Date();
     function setTitle(newTitle) {
         title = newTitle;
     }
@@ -21,7 +24,7 @@ function todoFactory(title, description, startDate, dueDate, priority, additiona
         return {title, description, startDate, dueDate, priority, additional, marked};
     }
 
-    return {getInfo};
+    return {getInfo, setTitle, setDesc, setDueDate, setPriority, mark, setAdditional};
 }
 
 function checklistFactory() {

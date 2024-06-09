@@ -1,10 +1,10 @@
 export default function(title, icon, priority) {
-    let todosList = [];
+    let list = [];
     function addTodo(todoItem) {
-        todosList.push(todoItem);
+        list.push(todoItem);
     }
     function removeTodo(){
         //figure this out later
     }
-    return {todosList, addTodo, };
+    return {list, addTodo, removeTodo};
 }
