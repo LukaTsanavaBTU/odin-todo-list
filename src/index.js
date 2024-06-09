@@ -10,7 +10,7 @@ myTodo.setAdditional(myChecklist);
 let myProject = projectFactory("Monday", null, 1);
 myProject.addTodo(myTodo);
 
-let para = document.createElement("p");
-para.textContent = myProject.list[0].getInfo().additional.list[0].marked;
-document.querySelector("body").appendChild(para);
+// let para = document.createElement("p");
+// para.textContent = myProject.list[0].getInfo().additional.list[0].marked;
+// document.querySelector("body").appendChild(para);
 

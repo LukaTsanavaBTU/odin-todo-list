@@ -1,0 +1,40 @@
+:root {
+    --system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-family: var(--system-font);
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #393E46;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+aside {
+    padding: 20px;
+    background-color: #222831;
+    color: #EEEEEE;
+    img {
+        width: 80px;
+    }
+    ul {
+        list-style: none;
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding-left: 20px;
+        span {
+            margin-right: 10px;
+        }
+    }
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    h1 {
+        font-size: 2rem;
+    }
+}
