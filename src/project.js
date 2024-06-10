@@ -18,5 +18,38 @@ export default function(title, description, icon, priority) {
     function setPriority(newPrio) {
         priority = newPrio;
     }
-    return {list, addTodo, removeTodo, setTitle, setDesc, setIcon, setPriority};
+    function getInfo() {
+        return {title, description, icon, priority};
+    }
+    function drawOnSidebar() {
+        const projectItem = document.createElement("li");
+        const iconSpan = document.createElement("span");
+        projectItem.textContent = title;
+        iconSpan.textContent = icon;
+        projectItem.insertBefore(iconSpan, projectItem.firstChild);
+        return projectItem;
+    }
+    function drawTodos() {
+        const todosWrapper = document.createElement("ul");
+        todosWrapper.classList.add("todos-wrapper");
+        for (const todo of list) {
+            todosWrapper.appendChild(todo.draw());
+        }
+        return todosWrapper;
+    }
+    function drawProject() {
+        const mainDiv = document.createElement("div");
+        const iconDiv = document.createElement("div");
+        const projectTitleHeader = document.createElement("h2");
+        const projectDescPara= document.createElement("p");
+        iconDiv.textContent = icon;
+        projectTitleHeader.textContent = title;
+        projectDescPara.textContent = description;
+        mainDiv.appendChild(iconDiv);
+        mainDiv.appendChild(projectTitleHeader);
+        mainDiv.appendChild(projectDescPara);
+        mainDiv.appendChild(drawTodos());
+        return mainDiv;
+    }
+    return {list, getInfo, addTodo, removeTodo, setTitle, setDesc, setIcon, setPriority, drawOnSidebar, drawTodos, drawProject};
 }

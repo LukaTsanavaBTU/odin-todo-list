@@ -1,5 +1,5 @@
 function todoFactory(title, description, dueDate, priority) {
-    let additional;
+    let additional = null;
     let marked = false;
     let startDate = new Date();
     function setTitle(newTitle) {
@@ -23,8 +23,19 @@ function todoFactory(title, description, dueDate, priority) {
     function getInfo() {
         return {title, description, startDate, dueDate, priority, additional, marked};
     }
+    function draw() {
+        const todoItemWrapper = document.createElement("li");
+        const mainTask = document.createElement("p");
+        mainTask.textContent = title;
+        todoItemWrapper.classList.add("todo-item-wrapper");
+        todoItemWrapper.appendChild(mainTask);
+        if (additional !== null) {
+            todoItemWrapper.append(additional.draw());
+        }
+        return todoItemWrapper;
+    }
 
-    return {getInfo, setTitle, setDesc, setDueDate, setPriority, mark, setAdditional};
+    return {getInfo, setTitle, setDesc, setDueDate, setPriority, mark, setAdditional, draw};
 }
 
 function checklistFactory() {
@@ -35,13 +46,27 @@ function checklistFactory() {
             marked: false,
             mark() {
                 this.marked = !this.marked
+            },
+            draw() {
+                const listItem = document.createElement("li");
+                const para = document.createElement("p");
+                para.textContent = this.title;
+                listItem.appendChild(para);
+                return listItem;
             }
         };
         list.push(listObj);
     }
     function removeListItem() { //figure this out later
     }
-    return {list, addListItem, removeListItem};
+    function draw() {
+        const unorderedList = document.createElement("ul");
+        for (const listObj of list) {
+            unorderedList.appendChild(listObj.draw());
+        }
+        return unorderedList;
+    }
+    return {list, addListItem, removeListItem, draw};
 }
 
 function notesFactory() {
@@ -49,12 +74,14 @@ function notesFactory() {
     function addListItem(title) {
         let listObj = {
             title,
+            draw() {} //implement later
         };
         list.push(listObj);
     }
     function removeListItem() { //figure this out later
     }
-    return {list, addListItem, removeListItem}
+    function draw() {} //implement later
+    return {list, addListItem, removeListItem, draw}
 }
 
 export {todoFactory, checklistFactory, notesFactory}
