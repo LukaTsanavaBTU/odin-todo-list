@@ -32,9 +32,17 @@ export default function(title, description, icon, priority) {
     function drawTodos() {
         const todosWrapper = document.createElement("ul");
         todosWrapper.classList.add("todos-wrapper");
-        for (const todo of list) {
-            todosWrapper.appendChild(todo.draw());
+        for (const [index, todo] of list.entries()) {
+            const newTodo = todo.draw();
+            newTodo.dataset.index = index
+            todosWrapper.appendChild(newTodo);
         }
+        const newTaskWrapper = document.createElement("li");
+        const newTaskButton = document.createElement("button");
+        newTaskButton.textContent = "+ New Task";
+        newTaskWrapper.classList.add("todo-item-wrapper");
+        newTaskWrapper.appendChild(newTaskButton);
+        todosWrapper.appendChild(newTaskWrapper);
         return todosWrapper;
     }
     function drawProject() {

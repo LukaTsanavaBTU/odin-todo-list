@@ -26,7 +26,24 @@ function todoFactory(title, description, dueDate, priority) {
     function draw() {
         const todoItemWrapper = document.createElement("li");
         const mainTask = document.createElement("p");
+        const deleteSpan = document.createElement("span");
+        deleteSpan.textContent = "X";
+        deleteSpan.classList.add("hidden");
         mainTask.textContent = title;
+        mainTask.appendChild(deleteSpan);
+        if (marked) {
+            mainTask.classList.add(marked);
+        }
+        mainTask.addEventListener("mouseover", (e) => {
+            deleteSpan.classList.toggle("hidden");
+        });
+        mainTask.addEventListener("mouseout", (e) => {
+            deleteSpan.classList.toggle("hidden");
+        });
+        mainTask.addEventListener("click", (e) => {
+            mainTask.classList.toggle("marked");
+            marked = !marked;
+        });
         todoItemWrapper.classList.add("todo-item-wrapper");
         todoItemWrapper.appendChild(mainTask);
         if (additional !== null) {
@@ -50,7 +67,21 @@ function checklistFactory() {
             draw() {
                 const listItem = document.createElement("li");
                 const para = document.createElement("p");
+                const deleteSpan = document.createElement("span");
+                deleteSpan.textContent = "X";
+                deleteSpan.classList.add("hidden");
                 para.textContent = this.title;
+                para.appendChild(deleteSpan);
+                para.addEventListener("mouseover", (e) => {
+                    deleteSpan.classList.toggle("hidden");
+                });
+                para.addEventListener("mouseout", (e) => {
+                    deleteSpan.classList.toggle("hidden");
+                });
+                para.addEventListener("click", (e) => {
+                    para.classList.toggle("marked");
+                    this.mark();
+                });
                 listItem.appendChild(para);
                 return listItem;
             }
