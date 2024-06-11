@@ -3,8 +3,8 @@ export default function(title, description, icon, priority) {
     function addTodo(todoItem) {
         list.push(todoItem);
     }
-    function removeTodo(){
-        //figure this out later
+    function removeTodo(todoObj){
+        list.splice(list.indexOf(todoObj), 1);
     }
     function setTitle(newTitle) {
         title = newTitle;
@@ -34,7 +34,12 @@ export default function(title, description, icon, priority) {
         todosWrapper.classList.add("todos-wrapper");
         for (const [index, todo] of list.entries()) {
             const newTodo = todo.draw();
-            newTodo.dataset.index = index
+            const deleteSpan = newTodo.querySelector("&>p>span");
+            deleteSpan.addEventListener("click", (e) => {
+                removeTodo(todo);
+                console.log(list);
+                newTodo.parentElement.removeChild(newTodo);
+            });
             todosWrapper.appendChild(newTodo);
         }
         const newTaskWrapper = document.createElement("li");

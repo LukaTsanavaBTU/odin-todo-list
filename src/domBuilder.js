@@ -14,6 +14,7 @@ const domBuilder = (function() {
     };
 
     function drawProject(main, project) {
+        main.innerHTML = "";
         main.appendChild(project.drawProject());
     }
 

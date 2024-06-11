@@ -88,12 +88,19 @@ function checklistFactory() {
         };
         list.push(listObj);
     }
-    function removeListItem() { //figure this out later
+    function removeListItem(listObj) {
+        list.splice(list.indexOf(listObj), 1);
     }
     function draw() {
         const unorderedList = document.createElement("ul");
-        for (const listObj of list) {
-            unorderedList.appendChild(listObj.draw());
+        for (const [index, listObj] of list.entries()) {
+            const listItem = listObj.draw();
+            const deleteSpan = listItem.querySelector("span");
+            deleteSpan.addEventListener("click", (e) => {
+                removeListItem(listObj);
+                listItem.parentElement.removeChild(listItem);
+            });
+            unorderedList.appendChild(listItem);
         }
         return unorderedList;
     }
