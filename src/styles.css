@@ -82,6 +82,7 @@ main {
     display: flex;
     &>div {
         margin: auto;
+        width: 500px;   
     }
     &>div>div {
         font-size: 4rem;
@@ -137,13 +138,15 @@ main {
     }
     
     button {
-        font-size: 1.2rem;
-        padding: 10px 0;
+        font-size: 1rem;
+        padding: 5px 0;
         background-color: #222831;
         color: #EEEEEE;
         font-family: var(--system-font);
         border: 1px solid #EEEEEE;
         border-radius: 20px;
+        width: 160px;
+        margin-top: 20px;
     }
     button:hover {
         background-color: #393E46;

@@ -41,19 +41,56 @@ const domBuilder = (function() {
             } 
         });
     }
-    function initialize() {
-        currentProject = projectList[0];
-        newTaskDialogInit();
-        const addProjectButtonMain = document.querySelector(".add-project");
-        addProjectButtonMain.addEventListener("click", (e) => {
-            console.log("adding project")
+    function newProjectDialogInit() {
+        const dialog = document.querySelector(".new-project-dialog");
+        const form = dialog.querySelector("form");
+        const addButton = dialog.querySelector("#new-project-add-button");
+        const cancelButton = dialog.querySelector("#new-project-cancel-button");
+        const titleInput = dialog.querySelector("#project-title-input");
+        const descInput = dialog.querySelector("#project-description-input");
+        const iconInput = dialog.querySelector("#project-icon-input");
+        const priorityInput = dialog.querySelector("#project-priority-input");
+
+        cancelButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            dialog.close();
+        });
+
+        addButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const newTitle = titleInput.value;
+            const newDesc = descInput.value;
+            const newIcon = iconInput.value;
+            const newPriority = parseInt(priorityInput.value);
+            if (form.reportValidity()) {
+                const newProject = project(newTitle, newDesc, newIcon, newPriority);
+                addProject(newProject);
+                drawProject(newProject);
+                listProjects();
+                titleInput.value = "";
+                descInput.value = "";
+                iconInput.value = "";
+                priorityInput.value = "";
+                dialog.close();
+            } 
         });
     }
-    function listProjects(projectContainer) {
+    function initialize() {
+        currentProject = projectList[0];
+        newProjectDialogInit();
+        newTaskDialogInit();
+        const addProjectButtonMain = document.querySelector(".add-project");
+        const addProjectDialog = document.querySelector(".new-project-dialog");
+        addProjectButtonMain.addEventListener("click", (e) => {
+            addProjectDialog.showModal();
+        });
+    }
+    function listProjects() {
+        const projectContainer = document.querySelector(".projects");
+        projectContainer.innerHTML = "";
         for (const project of projectList) {
             const projectListItem = project.drawOnSidebar();
             projectListItem.addEventListener("click", (e) => {
-                currentProject = project;
                 drawProject(project);
             });
             projectContainer.appendChild(projectListItem);
@@ -62,6 +99,7 @@ const domBuilder = (function() {
 
     function drawProject(project) {
         const main = document.querySelector("main");
+        currentProject = project;
         main.innerHTML = "";
         main.appendChild(project.drawProject());
     }

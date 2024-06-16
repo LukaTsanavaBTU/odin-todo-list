@@ -66,23 +66,50 @@
             <ul>
                 <li>
                     <label for="title-input">Title</label>
-                    <input type="text" id="title-input" value="title" required>
+                    <input type="text" id="title-input" name="title" required>
                 </li>
                 <li>
                     <label for="description-input">Description</label>
-                    <textarea id="description-input" value="description"></textarea>
+                    <textarea id="description-input" name="description"></textarea>
                 </li>
                 <li>
                     <label for="due-date-input">Due Date</label>
-                    <input type="date" id="due-date-input" value="due-date">
+                    <input type="date" id="due-date-input" name="due-date">
                 </li>
                 <li>
                     <label for="priority-input">Priority</label>
-                    <input type="number" id="priority-input" value="priority" min="0">
+                    <input type="number" id="priority-input" name="priority" min="0">
                 </li>
                 <li>
                     <button id="new-task-add-button">Add</button>
                     <button id="new-task-cancel-button">Cancel</button>
+                </li>
+            </ul>
+        </form>
+    </dialog>
+    <dialog class="new-project-dialog">   
+        <h2>Add a New Project:</h2>
+        <form>
+            <ul>
+                <li>
+                    <label for="project-title-input">Title</label>
+                    <input type="text" id="project-title-input" name="title" required>
+                </li>
+                <li>
+                    <label for="project-description-input">Description</label>
+                    <textarea id="project-description-input" name="description"></textarea>
+                </li>
+                <li>
+                    <label for="project-icon-input">Icon</label>
+                    <input type="text" id="project-icon-input" name="icon">
+                </li>
+                <li>
+                    <label for="project-priority-input">Priority</label>
+                    <input type="number" id="project-priority-input" name="priority" min="0">
+                </li>
+                <li>
+                    <button id="new-project-add-button">Add</button>
+                    <button id="new-project-cancel-button">Cancel</button>
                 </li>
             </ul>
         </form>

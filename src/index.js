@@ -3,8 +3,6 @@ import {todoFactory, checklistFactory, notesFactory} from "./todo.js";
 import projectFactory from "./project.js";
 import domBuilder from "./domBuilder.js";
 
-const projectsList = document.querySelector(".projects");
-
 let myProject1 = projectFactory("Monday", "My description", "🐦", 1);
 let myProject2 = projectFactory("Tuesday", "My description", "🦙", 1);
 let myProject3 = projectFactory("Wednesday", "My description", "⛅", 1);
@@ -33,7 +31,7 @@ domBuilder.addProject(myProject2);
 domBuilder.addProject(myProject3);
 domBuilder.addProject(myProject4);
 domBuilder.addProject(myProject5);
-domBuilder.listProjects(projectsList);
+domBuilder.listProjects();
 domBuilder.initialize();
 domBuilder.drawProject(myProject1);
 
