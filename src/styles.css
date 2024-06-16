@@ -166,4 +166,65 @@ main {
     flex-direction: column;
 }
 
+dialog {
+    width: 400px;
+    background-color: #222831;
+    border: 1px solid #eeeeee69;
+    border-radius: 20px;
+    color: #EEEEEE;
+    h2 {
+        font-weight: 500;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li:not(:last-child) {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    li:last-child {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    input, textarea {
+        font-family: var(--system-font);
+        color: #EEEEEE;
+        background-color: #393E46;
+        border-radius: 10px;
+        height: 30px;
+        border: 1px solid #eeeeee69;
+        outline: none;
+        padding: 5px;
+        font-size: 1rem;
+        font-weight: 300;
+    }
+    textarea {
+        resize: vertical;
+        height: 90px;
+    }
+    input:focus, textarea:focus {
+        outline: 1px solid #eeeeee;
+    }
+    button {
+        flex: 1;
+        color: #EEEEEE;
+        font-family: var(--system-font);
+        border: 1px solid #EEEEEE;
+        border-radius: 20px;
+        background-color: #222831;
+        padding: 10px 0;
+    }
+    button:hover {
+        background-color: #393E46;
+    }
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(2px);
+}
+
 /* maybe adding a fixed width to the main div would be a nice idea */

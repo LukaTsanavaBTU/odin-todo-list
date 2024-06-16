@@ -39,6 +39,8 @@ domBuilder.listProjects(main, projectsList);
 domBuilder.initialize();
 domBuilder.drawProject(main, myProject1);
 
+document.querySelector("dialog").showModal();
+
 
 
 // let para = document.createElement("p");
