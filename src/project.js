@@ -32,7 +32,7 @@ export default function(title, description, icon, priority) {
     function drawTodos() {
         const todosWrapper = document.createElement("ul");
         todosWrapper.classList.add("todos-wrapper");
-        for (const [index, todo] of list.entries()) {
+        for (const todo of list) {
             const newTodo = todo.draw();
             const deleteSpan = newTodo.querySelector("&>p>span");
             deleteSpan.addEventListener("click", (e) => {
@@ -45,6 +45,9 @@ export default function(title, description, icon, priority) {
         const newTaskWrapper = document.createElement("li");
         const newTaskButton = document.createElement("button");
         newTaskButton.textContent = "+ New Task";
+        newTaskButton.addEventListener("click", (e) => {
+            console.log("adding new entry");
+        });
         newTaskWrapper.classList.add("todo-item-wrapper");
         newTaskWrapper.appendChild(newTaskButton);
         todosWrapper.appendChild(newTaskWrapper);

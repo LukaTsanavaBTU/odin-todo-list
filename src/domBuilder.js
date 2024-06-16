@@ -7,9 +7,18 @@ const domBuilder = (function() {
     }
     function removeProject() { //figure this out later
     }
-    function listProjects(projectContainer) {
+    function initialize() {
+        document.querySelector(".add-project").addEventListener("click", (e) => {
+            console.log("adding project")
+        });
+    }
+    function listProjects(main, projectContainer) {
         for (const project of projectList) {
-            projectContainer.appendChild(project.drawOnSidebar());
+            const projectListItem = project.drawOnSidebar();
+            projectListItem.addEventListener("click", (e) => {
+                drawProject(main, project);
+            });
+            projectContainer.appendChild(projectListItem);
         }
     };
 
@@ -18,7 +27,7 @@ const domBuilder = (function() {
         main.appendChild(project.drawProject());
     }
 
-    return {addProject, removeProject, listProjects, drawProject}
+    return {initialize, addProject, removeProject, listProjects, drawProject}
 })();
 
 export default domBuilder;

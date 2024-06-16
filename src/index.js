@@ -13,13 +13,6 @@ let myProject3 = projectFactory("Wednesday", "My description", "⛅", 1);
 let myProject4 = projectFactory("Thursday", "My description", "🎱", 1);
 let myProject5 = projectFactory("Friday", "My description", "🏃‍♂️", 1);
 
-domBuilder.addProject(myProject1);
-domBuilder.addProject(myProject2);
-domBuilder.addProject(myProject3);
-domBuilder.addProject(myProject4);
-domBuilder.addProject(myProject5);
-domBuilder.listProjects(projectsList);
-
 let myTodo1 = todoFactory("Get New Books", "Get new books from the new book store", new Date("12-09-2024"), 5);
 let myTodo2 = todoFactory("Feed The Pets", "Get new books from the new book store", new Date("12-09-2024"), 5);
 let myTodo3 = todoFactory("Get Work Done", "Get new books from the new book store", new Date("12-09-2024"), 5);
@@ -37,6 +30,13 @@ myProject1.addTodo(myTodo3);
 myProject1.addTodo(myTodo4);
 myProject1.addTodo(myTodo5);
 
+domBuilder.addProject(myProject1);
+domBuilder.addProject(myProject2);
+domBuilder.addProject(myProject3);
+domBuilder.addProject(myProject4);
+domBuilder.addProject(myProject5);
+domBuilder.listProjects(main, projectsList);
+domBuilder.initialize();
 domBuilder.drawProject(main, myProject1);
 
 

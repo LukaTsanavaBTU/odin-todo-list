@@ -93,7 +93,7 @@ function checklistFactory() {
     }
     function draw() {
         const unorderedList = document.createElement("ul");
-        for (const [index, listObj] of list.entries()) {
+        for (const listObj of list) {
             const listItem = listObj.draw();
             const deleteSpan = listItem.querySelector("span");
             deleteSpan.addEventListener("click", (e) => {
@@ -107,19 +107,19 @@ function checklistFactory() {
     return {list, addListItem, removeListItem, draw};
 }
 
-function notesFactory() {
-    let list = [];
-    function addListItem(title) {
-        let listObj = {
-            title,
-            draw() {} //implement later
-        };
-        list.push(listObj);
-    }
-    function removeListItem() { //figure this out later
-    }
-    function draw() {} //implement later
-    return {list, addListItem, removeListItem, draw}
-}
+// function notesFactory() {
+//     let list = [];
+//     function addListItem(title) {
+//         let listObj = {
+//             title,
+//             draw() {} //implement later
+//         };
+//         list.push(listObj);
+//     }
+//     function removeListItem() { //figure this out later
+//     }
+//     function draw() {} //implement later
+//     return {list, addListItem, removeListItem, draw}
+// }
 
-export {todoFactory, checklistFactory, notesFactory}
+export {todoFactory, checklistFactory} //, notesFactory
