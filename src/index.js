@@ -4,8 +4,6 @@ import projectFactory from "./project.js";
 import domBuilder from "./domBuilder.js";
 
 const projectsList = document.querySelector(".projects");
-const todosWrapper = document.querySelector(".todos-wrapper");
-const main = document.querySelector("main");
 
 let myProject1 = projectFactory("Monday", "My description", "🐦", 1);
 let myProject2 = projectFactory("Tuesday", "My description", "🦙", 1);
@@ -35,11 +33,9 @@ domBuilder.addProject(myProject2);
 domBuilder.addProject(myProject3);
 domBuilder.addProject(myProject4);
 domBuilder.addProject(myProject5);
-domBuilder.listProjects(main, projectsList);
+domBuilder.listProjects(projectsList);
 domBuilder.initialize();
-domBuilder.drawProject(main, myProject1);
-
-document.querySelector("dialog").showModal();
+domBuilder.drawProject(myProject1);
 
 
 

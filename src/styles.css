@@ -156,6 +156,7 @@ main {
 
 .marked {
     text-decoration: line-through;
+    color: #eeeeee7a;
 }
 
 .todos-wrapper {

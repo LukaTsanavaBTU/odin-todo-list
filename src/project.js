@@ -46,7 +46,8 @@ export default function(title, description, icon, priority) {
         const newTaskButton = document.createElement("button");
         newTaskButton.textContent = "+ New Task";
         newTaskButton.addEventListener("click", (e) => {
-            console.log("adding new entry");
+            const dialog = document.querySelector(".new-task-dialog");
+            dialog.showModal();
         });
         newTaskWrapper.classList.add("todo-item-wrapper");
         newTaskWrapper.appendChild(newTaskButton);
