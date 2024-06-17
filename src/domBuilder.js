@@ -38,6 +38,8 @@ const domBuilder = (function() {
                 dueDateInput.value = "";
                 priorityInput.value = "";
                 dialog.close();
+                const event = new CustomEvent("valuesChanged");
+                window.dispatchEvent(event);
             } 
         });
     }
@@ -72,10 +74,15 @@ const domBuilder = (function() {
                 iconInput.value = "";
                 priorityInput.value = "";
                 dialog.close();
+                const event = new CustomEvent("valuesChanged");
+                window.dispatchEvent(event);
             } 
         });
     }
     function initialize() {
+        window.addEventListener("valuesChanged", (e)=> {
+            localStorage.setItem("projectsList", JSON.stringify(projectList));
+        });
         currentProject = projectList[0];
         newProjectDialogInit();
         newTaskDialogInit();
@@ -104,7 +111,7 @@ const domBuilder = (function() {
         main.appendChild(project.drawProject());
     }
 
-    return {initialize, addProject, removeProject, listProjects, drawProject}
+    return {projectList, initialize, addProject, removeProject, listProjects, drawProject}
 })();
 
 export default domBuilder;

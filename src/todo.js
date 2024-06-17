@@ -30,22 +30,40 @@ function todoFactory(title, description, dueDate, priority) {
         deleteSpan.textContent = "X";
         deleteSpan.classList.add("hidden");
         mainTask.textContent = title;
-        mainTask.appendChild(deleteSpan);
         if (marked) {
             mainTask.classList.add(marked);
         }
-        mainTask.addEventListener("mouseover", (e) => {
-            deleteSpan.classList.toggle("hidden");
+        todoItemWrapper.addEventListener("mouseover", (e) => {
+            deleteSpan.classList.remove("hidden");
         });
-        mainTask.addEventListener("mouseout", (e) => {
-            deleteSpan.classList.toggle("hidden");
+        todoItemWrapper.addEventListener("mouseout", (e) => {
+            deleteSpan.classList.add("hidden");
         });
         mainTask.addEventListener("click", (e) => {
             mainTask.classList.toggle("marked");
             marked = !marked;
+            if (additional) {
+                for (const checkListElement of mainTask.parentElement.querySelectorAll("li")) {
+                    if (marked) {
+                        checkListElement.classList.add("marked");
+                    } else {
+                        checkListElement.classList.remove("marked");
+                    }
+                }
+                for (const checkListItem of additional.list) {
+                    if (marked) {
+                        checkListItem.marked = true;
+                    } else {
+                        checkListItem.marked = false;
+                    }
+                }
+            }
+            const event = new CustomEvent("valuesChanged");
+            window.dispatchEvent(event);
         });
         todoItemWrapper.classList.add("todo-item-wrapper");
         todoItemWrapper.appendChild(mainTask);
+        todoItemWrapper.appendChild(deleteSpan);
         if (additional !== null) {
             todoItemWrapper.append(additional.draw());
         }
@@ -67,22 +85,22 @@ function checklistFactory() {
             draw() {
                 const listItem = document.createElement("li");
                 const para = document.createElement("p");
-                const deleteSpan = document.createElement("span");
-                deleteSpan.textContent = "X";
-                deleteSpan.classList.add("hidden");
+                // const deleteSpan = document.createElement("span");
+                // deleteSpan.textContent = "X";
+                // deleteSpan.classList.add("hidden");
                 para.textContent = this.title;
-                para.appendChild(deleteSpan);
-                para.addEventListener("mouseover", (e) => {
-                    deleteSpan.classList.toggle("hidden");
-                });
-                para.addEventListener("mouseout", (e) => {
-                    deleteSpan.classList.toggle("hidden");
-                });
+                // listItem.addEventListener("mouseover", (e) => {
+                //     deleteSpan.classList.remove("hidden");
+                // });
+                // listItem.addEventListener("mouseout", (e) => {
+                //     deleteSpan.classList.add("hidden");
+                // });
                 para.addEventListener("click", (e) => {
-                    para.classList.toggle("marked");
+                    para.parentElement.classList.toggle("marked");
                     this.mark();
                 });
                 listItem.appendChild(para);
+                // listItem.appendChild(deleteSpan);
                 return listItem;
             }
         };
@@ -95,11 +113,11 @@ function checklistFactory() {
         const unorderedList = document.createElement("ul");
         for (const listObj of list) {
             const listItem = listObj.draw();
-            const deleteSpan = listItem.querySelector("span");
-            deleteSpan.addEventListener("click", (e) => {
-                removeListItem(listObj);
-                listItem.parentElement.removeChild(listItem);
-            });
+            // const deleteSpan = listItem.querySelector("span");
+            // deleteSpan.addEventListener("click", (e) => {
+            //     removeListItem(listObj);
+            //     listItem.parentElement.removeChild(listItem);
+            // });
             unorderedList.appendChild(listItem);
         }
         return unorderedList;
@@ -107,19 +125,5 @@ function checklistFactory() {
     return {list, addListItem, removeListItem, draw};
 }
 
-// function notesFactory() {
-//     let list = [];
-//     function addListItem(title) {
-//         let listObj = {
-//             title,
-//             draw() {} //implement later
-//         };
-//         list.push(listObj);
-//     }
-//     function removeListItem() { //figure this out later
-//     }
-//     function draw() {} //implement later
-//     return {list, addListItem, removeListItem, draw}
-// }
 
-export {todoFactory, checklistFactory} //, notesFactory
+export {todoFactory, checklistFactory}

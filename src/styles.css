@@ -3,6 +3,12 @@
     font-family: var(--system-font);
 }
 
+.prevent-select {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 body {
     height: 100vh;
     margin: 0;
@@ -95,9 +101,9 @@ main {
 }
 
 .todo-item-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
-
     ul {
         list-style-type: none;
         padding-left: 0;
@@ -106,33 +112,34 @@ main {
         position: relative;
         margin: 0;
         padding: 0 10px;
+        width: 480px;
+        text-overflow: ellipsis;
+        overflow: hidden; 
+        white-space: nowrap;
     }
-    p:hover {
+    &:not(:last-of-type):hover {
         cursor: pointer;
         background-color: #222831;
         border-radius: 10px;
     }
     span {
         position: absolute;
-        right: -30px;
-        top: 0;
+        right: 10px;
+        top: 5px;
         border: 1px solid #EEEEEE;
         background-color: #222831;
         border-radius: 100%;
         padding: 0 5px;
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
     span:hover {
         background-color: #393E46;
     }
     &>p {
         font-size: 1.5rem;
-        span {
-            font-size: 1rem;
-            top: 5px;
-        }
     }
     li {
+        position: relative;
         padding-left: 20px;
         margin-top: 5px;
     }
@@ -230,5 +237,3 @@ dialog {
 dialog::backdrop {
     backdrop-filter: blur(2px);
 }
-
-/* maybe adding a fixed width to the main div would be a nice idea */

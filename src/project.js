@@ -32,13 +32,16 @@ export default function(title, description, icon, priority) {
     function drawTodos() {
         const todosWrapper = document.createElement("ul");
         todosWrapper.classList.add("todos-wrapper");
+        todosWrapper.classList.add("prevent-select");
         for (const todo of list) {
             const newTodo = todo.draw();
-            const deleteSpan = newTodo.querySelector("&>p>span");
+            const deleteSpan = newTodo.querySelector("&>span");
             deleteSpan.addEventListener("click", (e) => {
                 removeTodo(todo);
                 console.log(list);
                 newTodo.parentElement.removeChild(newTodo);
+                const event = new CustomEvent("valuesChanged");
+            window.dispatchEvent(event);
             });
             todosWrapper.appendChild(newTodo);
         }
